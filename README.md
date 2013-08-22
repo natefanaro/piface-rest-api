@@ -4,8 +4,6 @@ About
 =====
 This is a generic REST API that interfaces with a PiFace board attached to a RaspberryPi.
 
-Current limitation, only one board is supported at a time.
-
 Requirements
 ====
 Hardware: Raspberry PI and PiFace module.
@@ -83,3 +81,17 @@ Status codes mirror http status codes.
 
 500: Exception or other error. The code and message are returned.
     {"status":"500","exception":{"code":8,"message":"Undefined offset: -1"}}
+
+Issues
+====
+No authentication is currently supported.
+	Current recommendation is to do this via htaccess.
+
+One piface board is supported at a time 
+	Four can be connected to the Raspberry Pi
+
+Create a generic response function that can receive a status and message
+
+Use the Middleware feature of Slim to handle responses.
+	This can receive the status code from $app->response. The body of the message can be json_encoded.
+	Probably easier to use the slim.after.router hook.
