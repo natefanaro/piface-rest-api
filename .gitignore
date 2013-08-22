@@ -1,0 +1,20 @@
+# project
+composer.lock
+composer.phar
+vendor/
+
+# mac
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# vim
+*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~

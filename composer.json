@@ -1,0 +1,1 @@
+{ "require": { "pkj/raspberry-piface-api": "dev-master", "slim/slim": "2.*" } }
