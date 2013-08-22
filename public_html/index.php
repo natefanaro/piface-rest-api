@@ -115,7 +115,7 @@ $app->get('/led/test/', function () use ($app, $pi) {
 
 		$prev_led--;
 		if ($led == 0) {
-		#	$prev_led = 7;
+			$prev_led = 7;
 		}
 
 		$pi->getLeds()[$prev_led]->setValue(0);
