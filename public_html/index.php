@@ -29,6 +29,7 @@ $app->notFound(function () use ($app) {
 });
 
 $pi = PiFaceDigital::create();
+$pi->init();   // Bug fixed: Missing initialization. Without this line, a COLD boot of Pi would give incorrect result. 
 
 // Defining min/max values
 \Slim\Route::setDefaultConditions(array(
