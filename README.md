@@ -21,7 +21,7 @@ This is a generic REST API that interfaces with a PiFace board attached to a Ras
 1. `curl -sS https://getcomposer.org/installer | php`
 1. `php composer.phar install`
 1. Point apache to piface_rest/public_html
-  * Makke sure apache allows .htaccess files
+  * Make sure apache allows .htaccess files
 
 ### API Endpoints
 
