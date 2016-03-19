@@ -29,7 +29,27 @@ $app->notFound(function () use ($app) {
 });
 
 $pi = PiFaceDigital::create();
-$pi->init();   // Bug fixed: Missing initialization. Without this line, a COLD boot of Pi would give incorrect result. 
+
+// A COLD boot of Pi would give incorrect result of the INPUT, and RELAY/OUTPUT cannot be set until INIT() is executed once.
+// But we cannot run INIT() every time because it would reset everything to OFF. This is the workaround by using one of the 
+// LED OUTPUT to set/get the value to determine if INIT() is needed. Pi ports initialization has to be executed once only
+// until next reboot. More elegant solution is to run .py script to init Pi at boot time, or use PHP APC/MemCache to 
+// store a variable shared by all http requests. 
+
+$testId = 7;
+$original = $pi->getLeds()[$testId]->getValue();
+
+if ($original == 1)
+   $pi->getLeds()[$testId]->setValue(0);
+else
+   $pi->getLeds()[$testId]->setValue(1);
+
+if ($pi->getLeds()[$testId]->getValue() == $original)
+    $pi->init();
+else
+    $pi->getLeds()[$testId]->setValue($original);
+
+
 
 // Defining min/max values
 \Slim\Route::setDefaultConditions(array(
